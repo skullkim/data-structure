@@ -13,7 +13,11 @@ template<typename T>
 int SinglyList<T>:: size = 0;
 
 template<typename T>
-SinglyList<T>:: SinglyList(){}
+SinglyList<T>:: SinglyList(){
+	this->data = '\0';
+	next = nullptr;
+	last = nullptr;
+}
 
 template<typename T>
 SinglyList<T>:: SinglyList(T _data){
@@ -51,8 +55,8 @@ void SinglyList<T>::pushNextTo(T prev_data, T target){
 	else{
 		new_data->next = node->next;
 		node->next = new_data;
+		size++;
 	}
-	size++;
 }
 
 template<typename T>
@@ -75,7 +79,7 @@ template <typename T>
 void SinglyList<T>::printData(void){
 	SinglyList* node = this;
 	while(node){
-		cout << node->data << " ";
+		if(node->data)cout << node->data << " ";
 		node = node->next;
 	}
 	cout << endl;
