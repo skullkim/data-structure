@@ -17,3 +17,13 @@ private:
 	static Queue* last;
 	static int size;
 };
+
+class QueueEmptyException:public exception
+{
+private:
+	string message;
+public:
+	QueueEmptyException();
+	QueueEmptyException(string);
+	virtual const char* what() const throw();
+};

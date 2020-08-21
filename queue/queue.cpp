@@ -77,25 +77,13 @@ void Queue<T>::popEle(void){
 
 template <typename T>
 T Queue<T>::frontEle(void){
-	try{
-		if(size <= 0) throw "Queue is empty";
-	}
-	catch (const char* str){
-		cout << str << endl;
-		return EXIT_FAILURE;
-	}
+	if(size <= 0) throw QueueEmptyException();
 	return last->data;
 }
 
 template <typename T>
 T Queue<T>::backEle(void){
-	try{
-		if(size <= 0) throw "Queue is empty";
-	}
-	catch (const char* str){
-		cout << str << endl;
-		return EXIT_FAILURE;
-	}
+	if(size <= 0) throw QueueEmptyException();
 	return this->next->data; 
 }
 
@@ -108,4 +96,16 @@ void Queue<T>::printQueue(void){
 	}
 	cout << endl;
 	return;
+}
+
+
+
+QueueEmptyException::QueueEmptyException()
+: message("Queue is Empty"){}
+
+QueueEmptyException::QueueEmptyException(string _m)
+: message("" + _m){}
+
+const char * QueueEmptyException::what() const throw(){
+	return message.c_str();
 }
