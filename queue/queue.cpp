@@ -10,7 +10,7 @@ using namespace std;
 #endif
 
 #ifndef _CSTDLIB_H_
-#define _SCTDLIB_H_
+#define _CSCTDLIB_H_
 #include "cstdlib"
 #endif
 
@@ -82,7 +82,7 @@ T Queue<T>::frontEle(void){
 	}
 	catch (const char* str){
 		cout << str << endl;
-		return EXIT_FAILURE;
+  		return EXIT_FAILURE;
 	}
 	return last->data;
 }
