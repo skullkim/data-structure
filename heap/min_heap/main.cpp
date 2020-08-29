@@ -5,6 +5,7 @@ int main(void){
 	cin.tie(NULL);
 	MinHeap<int>* heap = new MinHeap<int>(5);
 	cout << heap->returnMinValue() << endl;
+	heap->deleteData();
 	heap->insertData(6);
 	heap->insertData(3);
 	cout << heap->returnMinValue() << endl;
