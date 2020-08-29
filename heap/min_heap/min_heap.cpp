@@ -10,7 +10,7 @@
 using namespace std;
 
 template <typename T>
-T MinHeap<T>::root = NULL;
+T MinHeap<T>::root = '\0';
 
 template <typename T>
 MinHeap<T>::MinHeap(){
@@ -31,10 +31,6 @@ MinHeap<T>::MinHeap(T _data){
 
 template <typename T>
 MinHeap<T>::~MinHeap(){
-//	this->data = NULL;
-//	this->left = nullptr;
-//	this->right = nullptr;
-//	this->parent = nullptr;
 }
 
 template<typename T>
@@ -59,7 +55,7 @@ template <typename T>
 void MinHeap<T>::insertData(T _data){
 	if(!_data) return;
 	MinHeap<T>* new_data = new MinHeap<T>(_data);
-	if(this->data == NULL){
+	if(!this->data){
 		this->data = _data;
 		root = _data;
 	}
@@ -77,20 +73,6 @@ void MinHeap<T>::insertData(T _data){
 		if(root && root > new_data->data) root = new_data->data;
 	}
 }
-
-//template <typename T>
-//MinHeap<T>* MinHeap<T>::remakeHeap(MinHeap<T>* curr_node, MinHeap<T>* prev_heap){
-//	if(!prev_heap) return nullptr;
-//	
-//	MinHeap<T>* node;
-//	if(prev_heap->parent && prev_heap->data != NULL){
-//		node = new MinHeap<T>();
-//		node->insertData(prev_heap->data);
-//	}
-//	node = remakeHeap(curr_node, prev_heap->left);
-//	node = remakeHeap(curr_node, prev_heap->right);
-//	return node;
-//}
 
 template <typename T>
 void MinHeap<T>::remakeHeap(void){
@@ -121,6 +103,14 @@ void MinHeap<T>::deleteData(void){
 	}
 	else if(!leaf_parent->right && !leaf_parent->left){
 		this->swap(leaf_parent);
+		if(leaf_parent->parent){
+			if(leaf_parent->parent->left && leaf_parent->parent->left == leaf_parent){
+				leaf_parent->parent->left = nullptr;
+			}
+			else if(leaf_parent->parent->right && leaf_parent->parent->right == leaf_parent){
+				leaf_parent->parent->right = nullptr;
+			}
+		}
 		delete leaf_parent;
 		leaf_parent = nullptr;
 	}
@@ -132,9 +122,6 @@ void MinHeap<T>::deleteData(void){
 	}
 	this->remakeHeap();
 	root = this->data;
-	//MinHeap<T>* this_root = this;
-	//this_root = remakeHeap(new MinHeap<T>(), this);
-	//this_root = this->remakeHeap();
 }
 
 template<typename T>

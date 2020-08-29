@@ -7,7 +7,6 @@ public:
 	void swap(MinHeap*);
 	MinHeap* findLeafParent(MinHeap* curr_node);
 	void insertData(T _data);
-	//MinHeap* remakeHeap(MinHeap* curr_node, MinHeap* prev_heap);
 	void remakeHeap(void);
 	void deleteData(void);
 	T returnMinValue(void);
