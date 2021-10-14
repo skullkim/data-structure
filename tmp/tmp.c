@@ -54,6 +54,7 @@ int isExistData(int target, Node* currentNode) {
 	return exist;
 }
 
+//중위 순회를 통해 이진트리에 넣은 값을 순서대로 파일에 입력
 void inorderSearch(Node* currentNode, FILE* result) {
 	if(currentNode == NULL) return;
 	inorderSearch(currentNode -> left, result);
