@@ -54,6 +54,13 @@ int isExistData(int target, Node* currentNode) {
 	return exist;
 }
 
+void inorderSearch(Node* currentNode, FILE* result) {
+	if(currentNode == NULL) return;
+	inorderSearch(currentNode -> left, result);
+	fprintf(result, "%d\n", currentNode->data);
+	inorderSearch(currentNode -> right, result);
+}
+
 int main(void) {
 	FILE* pFile = fopen("test.txt", "r"); //read mode 
 	int intTemp = -1;
@@ -77,7 +84,10 @@ int main(void) {
 	}
 
 	//파일 형태로 반환
-
+	FILE* result;
+	result = fopen("result.txt", "w");
+	inorderSearch(root, result);
+	fclose(result);
 	fclose(pFile);          //close file
 	return 0;
 }
